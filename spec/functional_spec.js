@@ -8,7 +8,8 @@ describe("node-asset-server.loop", function() {
 
     var json = JSON.stringify(
       [
-        "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+        "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
+        "http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/dojo.xd.js"
       ]
     );
     var request = connection.request("POST", "/", {
@@ -25,6 +26,8 @@ describe("node-asset-server.loop", function() {
       });
       response.addListener('end', function() {
         expect(body).toContain("jQuery");
+        expect(body).toContain("dojotoolkit");
+        expect(body.indexOf("jQuery")).toBeLessThan(body.indexOf("dojotoolkit"));
         responseEnd = true;
       });
     });

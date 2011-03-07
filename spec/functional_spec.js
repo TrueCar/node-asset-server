@@ -2,7 +2,7 @@ var sys = require('sys');
 var http = require('http');
 var rest = require('restler');
 
-describe("node-asset-server.loop", function() {
+describe("POST /javascript", function() {
   it("combines the posted urls into a single file", function() {
     var connection = http.createClient(8124, "127.0.0.1");
 
@@ -13,7 +13,7 @@ describe("node-asset-server.loop", function() {
       ]
     );
     var responseEnd = false;
-    rest.post("http://127.0.0.1:8124/", {
+    rest.post("http://127.0.0.1:8124/javascript", {
       data: json
     }).on("complete", function(body) {
       expect(body).toContain("jQuery");

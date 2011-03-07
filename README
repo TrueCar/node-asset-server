@@ -1,1 +1,19 @@
-var sys = require("sys");
+=Installation
+
+First install the dependencies.
+
+* node.js (https://github.com/joyent/node)
+* npm (https://github.com/isaacs/npm)
+* rvm (http://rvm.beginrescueend.com/rvm/install/)
+
+Then run the following commands:
+
+    git clone https://github.com/TrueCar/node-asset-server.git
+    cd node-asset-server
+    # rvm will complain about the gemset not being created. Do whatever rvm suggests you do.
+    gem install bundler
+    bundle install
+    giternal update
+    bin/install-dependencies.sh
+    node index.js
+

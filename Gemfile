@@ -1,3 +1,4 @@
 source :gemcutter
 
-gem "watchr", '=0.7'
+gem "giternal", '0.1.0'
+gem "watchr", '0.7'

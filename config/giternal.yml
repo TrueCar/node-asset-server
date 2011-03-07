@@ -1,3 +1,6 @@
 jasmine-node:
   repo: https://github.com/mhevery/jasmine-node.git
   path: vendor
+restler:
+  repo: https://github.com/danwrong/restler.git
+  path: vendor

@@ -1,6 +1,6 @@
 var sys = require('sys');
 var http = require('http');
-var get = require('node-get');
+var rest = require('restler');
 
 describe("node-asset-server.loop", function() {
   it("combines the posted urls into a single file", function() {
@@ -12,24 +12,14 @@ describe("node-asset-server.loop", function() {
         "http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/dojo.xd.js"
       ]
     );
-    var request = connection.request("POST", "/", {
-      "Content-Length": json.length
-    });
-    request.write(json);
-    request.end();
-
     var responseEnd = false;
-    request.addListener("response", function(response) {
-      var body = "";
-      response.addListener('data', function(chunk) {
-        body += chunk;
-      });
-      response.addListener('end', function() {
-        expect(body).toContain("jQuery");
-        expect(body).toContain("dojotoolkit");
-        expect(body.indexOf("jQuery")).toBeLessThan(body.indexOf("dojotoolkit"));
-        responseEnd = true;
-      });
+    rest.post("http://127.0.0.1:8124/", {
+      data: json
+    }).on("complete", function(body) {
+      expect(body).toContain("jQuery");
+      expect(body).toContain("dojotoolkit");
+      expect(body.indexOf("jQuery")).toBeLessThan(body.indexOf("dojotoolkit"));
+      responseEnd = true;
     });
     waitsFor(function() {
       return responseEnd;

@@ -19,6 +19,7 @@ describe("node-asset-server.loop", function() {
       expect(body).toContain("jQuery");
       expect(body).toContain("dojotoolkit");
       expect(body.indexOf("jQuery")).toBeLessThan(body.indexOf("dojotoolkit"));
+      expect(body).toNotContain("Copyright");
       responseEnd = true;
     });
     waitsFor(function() {
